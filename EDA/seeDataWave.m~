@@ -1,0 +1,36 @@
+function seeDataWave(data)
+    minY = min(data.y);
+    maxY = max(data.y);
+    rangeY = minY : maxY;
+    
+    figure;
+    tiledlayout(length(rangeY),1)
+    for i = 1: length(rangeY)
+        ax1 = nexttile;
+        t = ['Class ' num2str(rangeY(i))];
+        tempDataX = data.X(1:10, data.y == rangeY(i));
+        figure;
+        plot(ax1, tempDataX);
+        title(ax1, t)
+        xlabel(ax1, 'Features From X0 to X10')
+        ylabel(ax1, 'Value')
+    end
+    
+    
+    tiledlayout(length(rangeY),1)
+    for i = 1: length(rangeY)
+        ax1 = nexttile;
+        tempDataY = data.X(11:20, data.y == rangeY(i));       
+        plot(ax1, tempDataY);
+        title(t)
+        xlabel('Features From Y0 to Y10');
+        ylabel('Value');
+        
+        tempDataZ = data.X(21:30, data.y == rangeY(i));
+        hold on;
+        plot(tempDataZ);
+        title(t)
+        xlabel('Features From Z0 to Z10');
+        ylabel('Value');
+    end
+end
